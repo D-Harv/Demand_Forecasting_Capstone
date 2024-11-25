@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}Historical Data Visualizations{% endblock %}
+
+{% block content %}
+    <div class="row">
+        <!-- Side Menu -->
+        <div class="col-md-3">
+            <div class="sticky-top bg-dark text-white p-3 rounded">
+                <h4>Navigation</h4>
+                <hr>
+                {% for plot_key, plot in plots.items() %}
+                    <a href="#{{ plot_key }}" class="text-white d-block py-1">{{ plot.title }}</a>
+                {% endfor %}
+            </div>
+        </div>
+
+        <!-- Visualizations -->
+        <div class="col-md-9">
+            <h1>Historical Data Visualizations</h1>
+            {% for plot_key, plot in plots.items() %}
+                <div id="{{ plot_key }}" class="mb-5">
+                    <h3>{{ plot.title }}</h3>
+                    <p>{{ plot.description }}</p>
+                    <div>{{ plot.html|safe }}</div>
+                </div>
+                <hr>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
